@@ -1,0 +1,41 @@
+{ 
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: [ "type", "username", "password", "firstName", "lastName", "timezone" ],
+            properties: {
+                type: {
+                    enum: [ "admin", "instructor", "counselor", "student" ],
+                    description: "required: must be one of the enum values"
+                },
+                username: {
+                    bsonType: "string",
+                    pattern: "^.+$",
+                    description: "required: must be a non-empty string"
+                },
+                password: {
+                    bsonType: "string",
+                    pattern: "^.+$",
+                    description: "required: must be a non-empty string"
+                },
+                firstName: {
+                    bsonType: "string",
+                    pattern: "^.+$",
+                    description: "required: must be a non-empty string"
+                },
+                lastName: {
+                    bsonType: "string",
+                    pattern: "^.+$",
+                    description: "required: must be a non-empty string"
+                },
+                timezone: {
+                    enum: [ -690, -660, -630, -600, -570, -540, -510, -480, -450, -420, -390, -360, -330, -300, -270, -240, -210, -180, -150, -120, -90, -60, -30, 0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360, 390, 420, 450, 480, 510, 540, 570, 600, 630, 660, 690, 720 ],
+                    description: "required: must be a valid time zone in minutes"
+                },
+                courses: {
+                    bsonType: "array" 
+                }
+            }
+        }
+    }
+}
