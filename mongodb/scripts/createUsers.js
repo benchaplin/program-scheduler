@@ -18,7 +18,6 @@ async function insertTestUsers() {
             const res = await users.insertOne(newUser);
             count = count + res.result.n;
         });
-        console.log(`Inserted ${count} new users`);
     } finally {
         await client.close();
         console.log(`mongo connection closed`);
