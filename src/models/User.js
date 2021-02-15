@@ -8,4 +8,4 @@ export const User = mongoose.model("User", {
     lastName: String,
     timezone: Number,
     courses: Array
-});
+}, "users");

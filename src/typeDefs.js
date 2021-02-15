@@ -2,7 +2,7 @@ import { gql } from "apollo-server-express";
 
 export const typeDefs = gql`
     type Query {
-        students: [User]!
+        users: [User]!
     }
 
     type User {
@@ -16,6 +16,17 @@ export const typeDefs = gql`
         courses: [ID]!
     }
 
+    input UserInput {
+        id: ID
+        type: String
+        username: String
+        password: String
+        firstName: String
+        lastName: String
+        timezone: Int
+        courses: [ID]
+    }
+
     type Mutation {
         createUser(
             type: String!
@@ -26,5 +37,10 @@ export const typeDefs = gql`
             timezone: Int!
             courses: [ID]!
         ): User!
+        updateUser(
+            filter: UserInput!,
+            userArgsToUpdate: UserInput!
+        ): User!
+        deleteUser(filter: UserInput!): User!
     }
 `;

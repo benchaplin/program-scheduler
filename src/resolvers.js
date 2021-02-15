@@ -2,14 +2,25 @@ import { User } from "./models/User";
 
 export const resolvers = {
     Query: {
-        students: () => User.find({ type: "student" })
+        users: () => User.find({})
     },
     Mutation: {
-        createUser: async (_, userArgs) => {
-            const newUser = new User(userArgs);
+        createUser: async (_, filter) => {
+            const newUser = new User(filter);
             await newUser.save();
-            console.log(newUser);
             return newUser;
+        },
+        updateUser: async (_, { filter, userArgsToUpdate }) => {
+            const updatedUser = await User.findOneAndUpdate(
+                filter,
+                userArgsToUpdate,
+                { new: true }
+            );
+            return updatedUser;
+        },
+        deleteUser: async (_, filter) => {
+            const deletedUser = await User.findOneAndDelete(filter);
+            return deletedUser;
         }
     }
 };
